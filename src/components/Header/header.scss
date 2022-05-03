@@ -1,0 +1,53 @@
+@import "../../style/variable";
+
+.header{
+    background-color: $primary;
+    height: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    
+    h2{
+        color: white !important;
+        font-weight: 300;
+    }
+    .content-wrap{
+        align-items: center;
+        margin: 10px;
+        .header-search{
+            margin-left: 2rem;
+            position: relative;
+            padding: 5px;
+            border-radius: 30px;
+            background-color: $grey;
+            input{
+                margin: 0rem 2rem ;
+                border: none;
+                background-color: $grey;
+                &:focus{
+                    outline: none;
+                }
+            }
+            .search-icon{
+            position: absolute;
+            left: 10px;
+            top: 8px;
+            }
+        }
+        
+    }
+    .header-icon{
+        align-items: center;
+        .header-account{
+            display: inline-block;
+            background: $grey;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            
+            p{
+                margin-top: 5px;    
+            }
+        }
+    }
+}
