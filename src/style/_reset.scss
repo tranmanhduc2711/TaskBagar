@@ -1,4 +1,4 @@
-@import './_variables';
+@import './_variable.scss';
 body{
     background-color: $grey;
 }
@@ -16,12 +16,12 @@ ul {
 }
 a{
     display: inline-block;
-    color: $black !important;
+    color: black !important;
     text-decoration: none;
 }
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
-    color: $black;
+    color: black;
 }
 p, label {
     margin: 0;
