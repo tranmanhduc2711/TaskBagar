@@ -1,0 +1,42 @@
+@import 'variable';
+
+.login-register{
+    width: 350px;
+    margin: 70px auto;
+
+    h2{
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    form{
+        .group{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &.register{
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+
+                #role{
+                    margin: 5px 0;
+                    padding: 2px 5px;
+                    
+                    font-size: 1.1rem;
+                    outline: none;
+                }
+
+                input[type=submit]{
+                    align-self: flex-end;
+                }
+            }
+        }
+
+        input[type=checkbox]{
+            margin-right: 5px;
+        }
+    }
+}
