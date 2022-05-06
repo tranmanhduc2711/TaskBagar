@@ -17,6 +17,15 @@
     margin: 10px;
 }
 
+::-webkit-scrollbar-track{
+    width: 5px;
+    background-color: #ddd;
+}
+
+::-webkit-scrollbar-thumb{
+
+}
+
 form{
     width: 100%;
     padding: 40px;

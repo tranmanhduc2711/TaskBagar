@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 import Login from "./components/Login";
 import Register from './components/Register';
 import AddNewTask from './components/AddNewTask';
+import OtherTaskInfo from './components/OtherTaskInfo';
 
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
             <Route path="/register" element={<Register/>}/>
             <Route path="/login" element={<Login/>}/>
             
-            {/**This route is temporary
+            {/**Two routes above are temporary
              * this component will show when
              * open in home component  */}
             <Route path="/add-new-task" element={<AddNewTask/>}/>
+            <Route path="/other-task-info" element={<OtherTaskInfo/>}/>
             {/* <Route exact path="/login" element={<Login />} /> */}
           </Routes>
         </div>
