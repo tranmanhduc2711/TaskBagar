@@ -25,8 +25,12 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(roleRef.current.value);
-    console.log('submit');
+    console.log({
+      username: username,
+      password: password,
+      fullname: fullname,
+      role: roleRef.current.value,
+    });
   }
   
   return <div>

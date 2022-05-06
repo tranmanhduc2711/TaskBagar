@@ -19,7 +19,11 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('submit form');
+    console.log({
+      username: username,
+      password: password,
+      remember: remember,
+    });
   }
 
   return (
