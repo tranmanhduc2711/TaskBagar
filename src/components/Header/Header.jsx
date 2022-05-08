@@ -1,11 +1,17 @@
 import React,{useState} from 'react'
+import { useNavigate } from "react-router-dom";
 import { BsPlusLg, BsFillBellFill,BsSearch } from "react-icons/bs";
 import './header.scss';
 export default function Header() {
   const [showModalAddProject,setModalAddProject] = useState(false);
 
+  let navigate = useNavigate();
   const openModal = () =>{
     setModalAddProject(prev => !prev);
+  }
+
+  const handleAddProBtn = (e)=>{
+    navigate("/addNewProject",{replace: true});
   }
   return (
     <>
@@ -22,7 +28,9 @@ export default function Header() {
 
         <div className="header-icon d-flex-row">
           <div onClick={openModal} className="m-1 btn">
-            <BsPlusLg />
+            <button className="add-pro-btn" onClick={handleAddProBtn}>
+              <BsPlusLg />
+            </button>
           </div>
           <div className="dropdown m-1">
             <BsFillBellFill />
