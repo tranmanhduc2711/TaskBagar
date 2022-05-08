@@ -16,9 +16,10 @@
 
     .info{
         position: relative;
-        width: 600px;
+        width: 800px;
         padding: 20px;
-
+        display: flex;
+        flex-direction: row;
         background-color: #fff;
 
         h3{
@@ -92,13 +93,40 @@
 
         .comments{
             margin-bottom: 20px;
-            
+
             .commentList{
                 overflow-y: scroll;
                 .comment{
                     display: flex;
                     margin-bottom: 10px;
                 }
+            }
+        }
+        .taskInfoSidebar{
+            padding: 80px 10px 10px 10px;
+            width:25%;
+            p{
+                font-weight: 700;
+                color: black;
+            }
+            div{
+                position:relative;
+                margin-top: 20px;
+            }
+            button{
+                width: 100%;
+            }
+            .labelIcon{
+                position: absolute;
+                left:5%;
+                color: white;
+                font-size:25px;
+            }
+            .attachmentIcon{
+                position: absolute;
+                left:5%;
+                color: white;
+                font-size:25px;
             }
         }
     }

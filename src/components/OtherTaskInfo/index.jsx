@@ -5,6 +5,7 @@ import InfoIcon from '@mui/icons-material/Info';
 import LabelIcon from '@mui/icons-material/Label';
 import NotesIcon from '@mui/icons-material/Notes';
 import ChatIcon from '@mui/icons-material/Chat';
+import AttachmentIcon from "@mui/icons-material/Attachment";
 import styles from './style.module.scss';
 
 const OtherTaskInfo = () => {
@@ -12,6 +13,7 @@ const OtherTaskInfo = () => {
    * Data will get from API
    * All value above is temporary
    */
+  const participated = 0;
   const taskName = 'Task name';
   const employee = {
     name: 'Eployee name',
@@ -54,71 +56,100 @@ const OtherTaskInfo = () => {
   }
 
   return (
-    <div className={styles.layer}>
+    <>
+      <div className={styles.layer}>
         <div className={styles.info}>
-            <CloseIcon onClick={handleClose} className={styles.close}/>
+          <div style={{width: '75%'}}>
+            <CloseIcon onClick={handleClose} className={styles.close} />
             <h3>{taskName}</h3>
             <div className={styles.taskDetail}>
-              <h4 className={styles.title}><InfoIcon/> Created by manager</h4>
+              <h4 className={styles.title}>
+                <InfoIcon /> Created by manager
+              </h4>
               <div className={styles.detail}>
                 <div className={styles.employee}>
                   <div className={styles.avatar}>
-                    <img 
+                    <img
                       src="https://images.unsplash.com/photo-1518549945153-64368b032957?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-                      alt=""/>
+                      alt=""
+                    />
                   </div>
                   {employee.name}
                 </div>
-                <div>
-                  Start: {startDate}
-                </div>
-                <div>
-                  Start: {endDate}
-                </div>
+                <div>Start: {startDate}</div>
+                <div>Start: {endDate}</div>
               </div>
             </div>
             <div className={styles.labels}>
-              <h4 className={styles.title}><LabelIcon/> Labels</h4>
+              <h4 className={styles.title}>
+                <LabelIcon /> Labels
+              </h4>
               <div className={styles.list}>
-                {labels.map((label,index)=>{
-                  return <div 
-                    className={styles.label} 
-                    style={{backgroundColor: label.color}} 
-                    key={index}>
+                {labels.map((label, index) => {
+                  return (
+                    <div
+                      className={styles.label}
+                      style={{ backgroundColor: label.color }}
+                      key={index}
+                    >
                       {label.name}
                     </div>
+                  );
                 })}
               </div>
             </div>
             <div className={styles.desc}>
-              <h4 className={styles.title}><NotesIcon/> Description</h4>
+              <h4 className={styles.title}>
+                <NotesIcon /> Description
+              </h4>
               <p>{description}</p>
             </div>
             <div className={styles.comments}>
-              <h4 className={styles.title}><ChatIcon/> Comments</h4>
+              <h4 className={styles.title}>
+                <ChatIcon /> Comments
+              </h4>
               <div className={styles.commentList}>
-                {comments.map((comment,index)=>{
+                {comments.map((comment, index) => {
                   return (
                     <div className={styles.comment} key={index}>
                       <div className={styles.avatar}>
                         <img
                           src="https://images.unsplash.com/photo-1518549945153-64368b032957?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
-                          alt="avatar"/>
+                          alt="avatar"
+                        />
                       </div>
                       <div className={styles.content}>
                         <h5>{comment.username}</h5>
                         <p>{comment.comment}</p>
                       </div>
                     </div>
-
-                  )
+                  );
                 })}
               </div>
             </div>
-          
+          </div>
+          {participated ? (
+            <div className={styles.taskInfoSidebar}>
+              <p>ADD</p>
+              <div>
+                <LabelIcon className={styles.labelIcon}/>
+                <button>LABEL</button>
+              </div>
+              <div>
+                <AttachmentIcon className={styles.attachmentIcon}/>
+                <button>ATTACHMENT</button>
+              </div>
+              <div>
+                <button className="danger">DELETE</button>
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-    </div>
-  )
+      </div>
+    </>
+  );
 }
 
 export default OtherTaskInfo
