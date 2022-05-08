@@ -1,0 +1,15 @@
+@import "../../style/variable";
+
+.homepage-container{
+    
+}
+.project{
+    width: 30%;
+    background-color:white;
+    p{
+        font-weight: 500;
+    }
+    &:hover{
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    }
+}
