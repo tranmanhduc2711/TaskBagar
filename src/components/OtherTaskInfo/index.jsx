@@ -1,11 +1,12 @@
-import React from 'react'
-
+import React,{useState} from 'react'
+import { useNavigate } from "react-router-dom";
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
 import LabelIcon from '@mui/icons-material/Label';
 import NotesIcon from '@mui/icons-material/Notes';
 import ChatIcon from '@mui/icons-material/Chat';
 import AttachmentIcon from "@mui/icons-material/Attachment";
+import Input from "../Input/index";
 import styles from './style.module.scss';
 
 const OtherTaskInfo = () => {
@@ -13,7 +14,19 @@ const OtherTaskInfo = () => {
    * Data will get from API
    * All value above is temporary
    */
-  const participated = 0;
+  const [comment,setComment] = useState('');
+  //check if employee participates task
+  const participated = 1;
+  //navigate url
+  let navigate = useNavigate();
+
+  const handleChangeComment = (e) =>{
+    setComment(e.target.value);
+  }
+  const handleSendComment = (e) => {
+    e.preventDefault();
+    console.log(comment);
+  };
   const taskName = 'Task name';
   const employee = {
     name: 'Eployee name',
@@ -52,14 +65,14 @@ const OtherTaskInfo = () => {
 
   //this action is temporary, close action will in props
   const handleClose = () => {
-    console.log('close');
+    navigate("/",{replace: true});
   }
 
   return (
     <>
       <div className={styles.layer}>
         <div className={styles.info}>
-          <div style={{width: '75%'}}>
+          <div style={{ width: "75%" }}>
             <CloseIcon onClick={handleClose} className={styles.close} />
             <h3>{taskName}</h3>
             <div className={styles.taskDetail}>
@@ -126,17 +139,29 @@ const OtherTaskInfo = () => {
                   );
                 })}
               </div>
+              {participated ? (
+                <div className={styles.sendComment}>
+                  <input
+                    type="text"
+                    value={comment}
+                    onChange={handleChangeComment}
+                  ></input>
+                  <button onClick={handleSendComment}>SEND</button>
+                </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
           {participated ? (
             <div className={styles.taskInfoSidebar}>
               <p>ADD</p>
               <div>
-                <LabelIcon className={styles.labelIcon}/>
+                <LabelIcon className={styles.labelIcon} />
                 <button>LABEL</button>
               </div>
               <div>
-                <AttachmentIcon className={styles.attachmentIcon}/>
+                <AttachmentIcon className={styles.attachmentIcon} />
                 <button>ATTACHMENT</button>
               </div>
               <div>

@@ -41,6 +41,7 @@
         }
     }
     .project-information{
+        
         .left{
             width: 50%;
             button{
@@ -65,16 +66,16 @@
     }
 }
 }
-
 input{
-    border-radius:5px;
-    border: solid 1px $grey;
-    margin: 5px 0;
-    background-color: white;
-    &:focus{
-        outline: none;
-    }
-}
+            border-radius:5px;
+            border: solid 1px $grey;
+            margin: 5px 0;
+            background-color: white;
+            &:focus{
+                outline: none;
+            }
+        }
+
 .list-manager{
     border: solid 1px $grey;
     border-radius:10px;

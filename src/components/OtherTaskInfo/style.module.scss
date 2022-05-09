@@ -101,6 +101,18 @@
                     margin-bottom: 10px;
                 }
             }
+            .sendComment{
+                display: flex;
+                flex-direction:  column;
+                justify-content: flex-end;
+                position: relative;
+                button{
+                    width: 15%;
+                    position: absolute;
+                    right: 0;
+                    top:100%;
+                }
+            }
         }
         .taskInfoSidebar{
             padding: 80px 10px 10px 10px;
