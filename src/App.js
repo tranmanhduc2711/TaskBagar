@@ -8,6 +8,7 @@ import Login from "./components/Login";
 import Register from './components/Register';
 import AddNewTask from './components/AddNewTask';
 import OtherTaskInfo from './components/OtherTaskInfo';
+import AddNewLabel from './components/AddNewLabel';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
              * open in home component  */}
             <Route path="/add-new-task" element={<AddNewTask />} />
             <Route path="/other-task-info" element={<OtherTaskInfo />} />
+            <Route path="/add-new-label" element={<AddNewLabel />} />
             {/* <Route exact path="/login" element={<Login />} /> */}
 
             <Route path="/addNewProject" element={<AddNewProject />} />
