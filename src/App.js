@@ -6,8 +6,7 @@ import AddNewProject from './components/AddProject/AddProject';
 import Homepage from './components/Homepage/Homepage';
 import Login from "./components/Login";
 import Register from './components/Register';
-import AddNewTask from './components/AddNewTask';
-import OtherTaskInfo from './components/OtherTaskInfo';
+import Workspace from './components/Workspace';
 
 function App() {
   return (
@@ -18,12 +17,8 @@ function App() {
           <Routes>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
-
-            {/**Two routes above are temporary
-             * this component will show when
-             * open in home component  */}
-            <Route path="/add-new-task" element={<AddNewTask />} />
-            <Route path="/other-task-info" element={<OtherTaskInfo />} />
+            <Route path="/project" element={<Workspace/>}/>
+            
             {/* <Route exact path="/login" element={<Login />} /> */}
 
             <Route path="/addNewProject" element={<AddNewProject />} />
