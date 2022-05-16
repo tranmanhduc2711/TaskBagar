@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
-
 export const Context = createContext();
+
 
 export default function({children}){
     //some simple data

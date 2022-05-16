@@ -1,39 +1,44 @@
 import React from "react";
 import { useState, useContext, useLayoutEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 import {Context} from "../../store/context";
 import Input from "../Input";
 import "../../style/login_register.scss";
 
 const Login = () => {
+    const navigate = useNavigate();
     //get data
-    const  userList = useContext(Context).userList;
+    const context = useContext(Context);
+    const userList = context.userList;
+    const userContext = context.user;
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [usernameInput, setUsernameInput] = useState("");
+    const [passwordInput, setPasswordInput] = useState("");
     const [remember, setRemember] = useState(true);
 
     const handleChangeUsername = (e) => {
-        setUsername(e.target.value);
+        setUsernameInput(e.target.value);
     };
 
     const handleChangePassword = (e) => {
-        setPassword(e.target.value);
+        setPasswordInput(e.target.value);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({
-            username: username,
-            password: password,
-            remember: remember,
-        });
-    };
-
-    useLayoutEffect(()=>{
-        const user = sessionStorage.user ? JSON.parse(sessionStorage.user) : undefined;
+        const user = userList.find(({username,password})=>(
+            usernameInput === username && passwordInput===password
+        ))
+        if(user){
+            console.log('true user');
+            sessionStorage.setItem('user',JSON.stringify(user));
+            userContext[1](user);
+            navigate('/');
+        }else{
+            console.log('wrong account');
+        }
         
-    },[])
+    };
 
     return (
         <div className="login-register">
@@ -42,13 +47,13 @@ const Login = () => {
                 <Input
                     label="Username:"
                     type="text"
-                    value={username}
+                    value={usernameInput}
                     onChange={handleChangeUsername}
                 />
                 <Input
                     label="Password:"
                     type="password"
-                    value={password}
+                    value={passwordInput}
                     onChange={handleChangePassword}
                 />
                 <div className="group">
