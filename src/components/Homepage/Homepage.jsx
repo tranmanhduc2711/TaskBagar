@@ -1,13 +1,27 @@
-import React,{useState} from 'react'
-import './Homepage.scss'
-import ListProject from './ListProject';
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import {Context} from "../../store/context";
+
+import ListProject from "./ListProject";
+import "./Homepage.scss";
+
 export default function Homepage() {
-    const [listProject,setListProject] = useState([]);
-  return (
-   <>
-    <div className="homepage-container p-1 d-flex-col">
-        <ListProject></ListProject>
-    </div>
-   </>
-  )
+    const userContext = useContext(Context).user;
+    const navigate = useNavigate();
+    const [listProject, setListProject] = useState([]);
+    useEffect(()=>{
+        const user = sessionStorage.user ? JSON.parse(sessionStorage.user) : undefined;
+        if(user){
+            userContext[1](user);
+        }else{
+            navigate('/login');
+        }
+    },[])
+    return (
+        <>
+            <div className="homepage-container p-1 d-flex-col">
+                <ListProject></ListProject>
+            </div>
+        </>
+    );
 }

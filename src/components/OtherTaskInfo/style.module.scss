@@ -13,13 +13,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 
     .info{
         position: relative;
         width: 600px;
+        max-height: 550px;
         padding: 20px;
 
         background-color: #fff;
+        z-index: 3;
 
         h3{
             margin-bottom: 20px;
@@ -94,6 +97,7 @@
             margin-bottom: 20px;
             
             .commentList{
+                max-height: 140px;
                 overflow-y: scroll;
                 .comment{
                     display: flex;
