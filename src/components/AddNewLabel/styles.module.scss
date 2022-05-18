@@ -1,0 +1,42 @@
+@import '../../style/variable';
+
+.layer{
+    height: 100vh;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0,0,0,0.6);
+
+    .form{
+        width: 300px;
+        // height: 300px;
+        padding: 10px;
+
+        background-color: #fff;
+
+        display: flex;
+        flex-direction: column;
+        input[type=text]{
+            margin-bottom: 15px;
+            padding: 5px 10px;
+            
+        }
+
+        .group{
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            button{
+                text-transform: uppercase;
+                border-radius: 5px;
+            }
+        }
+    }
+}

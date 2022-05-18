@@ -19,13 +19,12 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route exact path="/login" element={<Login />} />
                         <Route path="/project" element={<Workspace />} />
-
-                        {/* <Route exact path="/login" element={<Login />} /> */}
-
+                          
                         <Route
                             path="/addNewProject"
                             element={<AddNewProject />}
                         />
+                              
                         <Route path="/" element={<Homepage />} />
                     </Routes>
                 </div>
