@@ -6,7 +6,10 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import AddNewTask from "../AddNewTask";
 import StatusColumn from "./StatusColumn";
+
 import styles from "./style.module.scss";
+
+import Content from "./Content";
 const Workspace = () => {
     const navigate = useNavigate();
 
@@ -43,7 +46,7 @@ const Workspace = () => {
             navigate('/login');
         }
     },[])
-
+    
     return (
         <>
             <div className={`${styles.workspace} d-flex-col`}>
@@ -84,15 +87,7 @@ const Workspace = () => {
                     <button>Label filter</button>
                     <button>Status filter</button>
                 </div>
-                <div className={styles.content}>
-                    {separateTaskList.map((statusItem)=>
-                        <StatusColumn 
-                            taskList={statusItem.list}
-                            name={statusItem.status_name} 
-                            key={statusItem.status_id}
-                        />
-                    )}
-                </div>
+                <Content separateTaskList={separateTaskList}/>
             </div>
             {openAddNewTask && <AddNewTask close={handleCloseAddNewTask}/>}
         </>

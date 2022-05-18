@@ -24,35 +24,35 @@ export default function({children}){
     //statusList
     const statusList = [
         {
-            id: 1,
+            id: 0,
             name:"New"
         },
         {
-            id: 2,
+            id: 1,
             name:"Pending"
         },
         {
-            id: 3,
+            id: 2,
             name:"Processing"
         },
         {
-            id: 4,
+            id: 3,
             name:"Ready For QA"
         },
         {
-            id: 5,
+            id: 4,
             name:"Testing"
         },
         {
-            id: 6,
+            id: 5,
             name:"Undone"
         },
         {
-            id: 7,
+            id: 6,
             name:"Pause"
         },
         {
-            id: 8,
+            id: 7,
             name:"Done"
         },
     ];
@@ -63,7 +63,7 @@ export default function({children}){
             name: 'Task 1',
             project_id: 1,
             createdBy: 'Someone_id',
-            status_id: 1,
+            status_id: 0,
             startDate: '01/01/2022',
             endDate: '02/02/2022',
             description: 'This is a task bla bla bla',
@@ -73,7 +73,7 @@ export default function({children}){
             name: 'Task 2',
             project_id: 1,
             createdBy: 'Someone_id',
-            status_id: 1,
+            status_id: 0,
             startDate: '01/01/2022',
             endDate: '02/02/2022',
             description: 'This is a task bla bla bla',
@@ -81,6 +81,36 @@ export default function({children}){
         {
             id: 3,
             name: 'Task 3',
+            project_id: 1,
+            createdBy: 'Someone_id',
+            status_id: 1,
+            startDate: '01/01/2022',
+            endDate: '02/02/2022',
+            description: 'This is a task bla bla bla',
+        },
+        {
+            id: 4,
+            name: 'Task 4',
+            project_id: 1,
+            createdBy: 'Someone_id',
+            status_id: 2,
+            startDate: '01/01/2022',
+            endDate: '02/02/2022',
+            description: 'This is a task bla bla bla',
+        },
+        {
+            id: 5,
+            name: 'Task 5',
+            project_id: 1,
+            createdBy: 'Someone_id',
+            status_id: 0,
+            startDate: '01/01/2022',
+            endDate: '02/02/2022',
+            description: 'This is a task bla bla bla',
+        },
+        {
+            id: 6,
+            name: 'Task 6',
             project_id: 1,
             createdBy: 'Someone_id',
             status_id: 2,

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useContext, useLayoutEffect } from "react";
+import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {Context} from "../../store/context";
 import Input from "../Input";
@@ -15,6 +15,7 @@ const Login = () => {
     const [usernameInput, setUsernameInput] = useState("");
     const [passwordInput, setPasswordInput] = useState("");
     const [remember, setRemember] = useState(true);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleChangeUsername = (e) => {
         setUsernameInput(e.target.value);
@@ -35,6 +36,7 @@ const Login = () => {
             userContext[1](user);
             navigate('/');
         }else{
+            setErrorMessage('Wrong username or password!');
             console.log('wrong account');
         }
         
@@ -56,6 +58,7 @@ const Login = () => {
                     value={passwordInput}
                     onChange={handleChangePassword}
                 />
+                <span style={{color: '#ff0000'}}>{errorMessage}</span>
                 <div className="group">
                     <label>
                         <input
