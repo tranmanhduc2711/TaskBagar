@@ -14,7 +14,7 @@ function App() {
     <>
       <Router>
         <div className="App">
-          <Header/>
+          <Header />
           <Routes>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
@@ -27,6 +27,7 @@ function App() {
             {/* <Route exact path="/login" element={<Login />} /> */}
 
             <Route path="/addNewProject" element={<AddNewProject />} />
+            <Route path="/:name" element={<Homepage />} />
             <Route path="/" element={<Homepage />} />
           </Routes>
         </div>

@@ -6,7 +6,7 @@ export default function Project({project}) {
       <a href="">
         <div className="project d-flex-col m-1 p-1">
             <p>{project.name}</p>
-            <p>{project.Date}</p>
+            <p>{project.starttime}</p>
         </div>
       </a>
     </>

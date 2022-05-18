@@ -1,15 +1,23 @@
 import React,{useState} from 'react'
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { BsPlusLg, BsFillBellFill,BsSearch } from "react-icons/bs";
 import './header.scss';
 export default function Header() {
-  const [showModalAddProject,setModalAddProject] = useState(false);
-
+  const [searchContext,setSearchContext] = useState('');
   let navigate = useNavigate();
-  const openModal = () =>{
-    setModalAddProject(prev => !prev);
+
+  const onTextInputChange = (e)=>{
+    setSearchContext(e.target.value)
   }
 
+  const handleSearch = (e) => {
+    if(e.key == 'Enter'){
+      console.log(searchContext);
+      navigate(`${searchContext}` , { replace: true });
+    }
+   
+  }
   const handleAddProBtn = (e)=>{
     navigate("/addNewProject",{replace: true});
   }
@@ -22,12 +30,17 @@ export default function Header() {
           </div>
           <div className="header-search">
             <BsSearch className="search-icon" />
-            <input placeholder="Search..."></input>
+            <input 
+            value={searchContext} 
+            placeholder="Search..." 
+            onChange={onTextInputChange} 
+            onKeyDown={handleSearch}
+            ></input>
           </div>
         </div>
 
         <div className="header-icon d-flex-row">
-          <div onClick={openModal} className="m-1 btn">
+          <div  className="m-1 btn">
             <button className="add-pro-btn" onClick={handleAddProBtn}>
               <BsPlusLg />
             </button>
