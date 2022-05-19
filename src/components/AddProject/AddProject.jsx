@@ -46,7 +46,7 @@ export default function AddProject() {
     })
   }
   const handleExitBtn = (e) => {
-    navigate(-1,{replace:true});
+    navigate("/",{replace: true});
   }
   const manager = [
     { name: "John", id: 1, check: false },
