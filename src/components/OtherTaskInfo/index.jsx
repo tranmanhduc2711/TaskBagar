@@ -89,10 +89,10 @@ const OtherTaskInfo = ({
 
   return (
     <>
-      <div className={styles.layer}>
+      <div className={styles.layer} onClick={handleClose}>
         <div className={styles.info}>
           <div style={{ width: "75%" }}>
-            <CloseIcon onClick={handleClose} className={styles.close} />
+            <CloseIcon onClick={close} className={styles.close} />
             <h3>{taskName}</h3>
             <div className={styles.taskDetail}>
               <h4 className={styles.title}>

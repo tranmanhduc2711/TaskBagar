@@ -1,12 +1,12 @@
 import React,{useContext} from 'react'
 import './addNewProject.scss';
-import { managerContext } from "./AddProject";
+//import { managerContext } from "./AddProject";
 export default function Manager({manager}) {
-  const {listParticipants,setListParticipants} = useContext(managerContext);
+  //const {listParticipants,setListParticipants} = useContext(managerContext);
 
-  const handleChecked = (e)=>{
-    setListParticipants(manager.id);
-  }
+  // const handleChecked = (e)=>{
+  //   setListParticipants(manager.id);
+  // }
   return (
     <>
         <div className="manager d-flex-row">

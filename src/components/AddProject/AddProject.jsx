@@ -4,7 +4,7 @@ import { IoCloseCircle } from "react-icons/io5";
 import './addNewProject.scss'
 import ListManager from './ListManager';
 
-export const managerContext = React.createContext();
+//export const managerContext = React.createContext();
 
 export default function AddProject() {
   //list manager,employee,category
@@ -46,7 +46,7 @@ export default function AddProject() {
     })
   }
   const handleExitBtn = (e) => {
-    navigate("/",{replace:true});
+    navigate(-1,{replace:true});
   }
   const manager = [
     { name: "John", id: 1, check: false },
@@ -112,14 +112,14 @@ export default function AddProject() {
                   onChange={handleChangeCus}
                 ></input>
               </div>
-              <managerContext.Provider value={[listParticipants, setListParticipants]}>
+              {/* <managerContext.Provider value={[listParticipants, setListParticipants]}> */}
                 <div>
                   <label>MANAGER</label>
                   <div className="list-manager p-1">
                     <ListManager listManager={manager}></ListManager>
                   </div>
                 </div>
-              </managerContext.Provider>
+              {/* </managerContext.Provider> */}
               <div>
                 <label>EMPLOYEE</label>
                 <div className="list-manager p-1">
