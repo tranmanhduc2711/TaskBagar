@@ -9,64 +9,83 @@ import AttachmentIcon from "@mui/icons-material/Attachment";
 import Input from "../Input/index";
 import styles from './style.module.scss';
 
-const OtherTaskInfo = () => {
+const OtherTaskInfo = ({
+  taskName,
+  startDate,
+  endDate,
+  description,
+  close,
+}) => {
   /**
    * Data will get from API
    * All value above is temporary
    */
-  const [comment,setComment] = useState('');
+
+  const [comment, setComment] = useState("");
   //check if employee participates task
   const participated = 1;
   //navigate url
   let navigate = useNavigate();
 
-  const handleChangeComment = (e) =>{
+  const handleChangeComment = (e) => {
     setComment(e.target.value);
-  }
+  };
   const handleSendComment = (e) => {
     e.preventDefault();
     console.log(comment);
   };
-  const taskName = 'Task name';
+
   const employee = {
-    name: 'Eployee name',
-    avatar: 'url',
-  }
-  const startDate = 'mm/dd/yyyy';
-  const endDate = 'mm/dd/yyyy';
+    name: "Eployee name",
+    avatar: "url",
+  };
   const labels = [
     {
-      name: 'label1',
-      color: 'red'
+      name: "label1",
+      color: "red",
     },
     {
-      name: 'label2',
-      color: 'green'
+      name: "label2",
+      color: "green",
     },
     {
-      name: 'label3',
-      color: 'blue'
+      name: "label3",
+      color: "blue",
     },
-    
   ];
-  const description = `Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore adipisci necessitatibus perferendis perspiciatis nemo recusandae dolores inventore laboriosam dicta, ad tempora harum, natus quae porro. Beatae dolorem excepturi libero vel?`;
+  
   const comments = [
     {
-      avatar: 'url',
-      username: 'username1',
-      comment: 'Lorem ipsum dolor sit amet',
+      avatar: "url",
+      username: "username1",
+      comment: "Lorem ipsum dolor sit amet",
     },
     {
-      avatar: 'url',
-      username: 'username2',
-      comment: 'Lorem ipsum dolor sit amet',
-    }
+      avatar: "url",
+      username: "username2",
+      comment: "Lorem ipsum dolor sit amet",
+    },
+    {
+      avatar: "url",
+      username: "username2",
+      comment: "Lorem ipsum dolor sit amet",
+    },
+    {
+      avatar: "url",
+      username: "username2",
+      comment: "Lorem ipsum dolor sit amet",
+    },
   ];
-
   //this action is temporary, close action will in props
-  const handleClose = () => {
-    navigate("/",{replace: true});
-  }
+  const handleClose = (e) => {
+    if (e.target.classList[0] !== undefined) {
+      if (e.target.classList[0].includes("layer")) {
+        {
+          close();
+        }
+      }
+    }
+  };
 
   return (
     <>
@@ -175,6 +194,6 @@ const OtherTaskInfo = () => {
       </div>
     </>
   );
-}
+};
 
-export default OtherTaskInfo
+export default OtherTaskInfo;

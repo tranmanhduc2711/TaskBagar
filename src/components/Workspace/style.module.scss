@@ -1,0 +1,115 @@
+@import '../../style/variable';
+
+.workspace{
+    height: calc(100vh - 3rem);
+    padding: 20px 10px 10px 10px;
+    .header{
+        margin-bottom: 15px;
+        min-height: 35px;
+
+        display: flex;
+        justify-content: space-between;
+        .groupBtn{
+            display: flex;
+            // align-items: center;
+            gap: 10px;
+
+            .search{
+                height: 35px;
+                
+                position: relative;
+
+                overflow: hidden;
+
+                .searchIcon{
+                    position: absolute;
+                    left: 13px;
+                    top: 50%;
+
+                    z-index: 1;
+                    transform: translateY(-50%);
+                }
+
+                input[type=search]{
+                    width: 50px;
+                    height: 100%;
+                    margin: 0;
+                    padding: 0 10px;
+
+                    border-radius: 200px;
+                    transition: all 0.3s ease;
+
+                    &:focus{
+                        width: 200px;
+                        padding-left: 40px;
+                    }
+                }
+                
+            }
+
+            .btn{
+                height: 35px;
+                margin-left: 10px;
+
+                text-transform: uppercase;
+
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .filter{
+        min-height: 35px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+
+        button{
+            background-color: #fff;
+            color: #000;
+
+            border-radius: 5px;
+
+            font-size: 1.1rem;
+        }
+    }
+
+    .content{
+        width: 100%;
+        flex: 1;
+        display: flex;
+        gap: 20px;
+        overflow-x: scroll;
+        .status{
+            min-width: 150px;
+            height: 100%;
+            padding: 10px;
+
+            background-color: #F3F3F3;
+            overflow-y: scroll;
+
+            h5{
+                margin-bottom: 10px;
+            }
+
+            .list{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                .task{
+                    padding: 5px 10px;
+                    
+                    background-color: #fff;
+                    cursor: pointer;
+
+                    &:hover{
+                        background-color: $grey;
+                    }
+                }
+            }
+        }
+    }
+}
