@@ -9,28 +9,23 @@ import Register from "./components/Register";
 import Workspace from "./components/Workspace";
 
 function App() {
-    console.log("render App");
-    return (
-        <>
-            <Router>
-                <div className="App">
-                    <Header />
-                    <Routes>
-                        <Route path="/register" element={<Register />} />
-                        <Route exact path="/login" element={<Login />} />
-                        <Route path="/project" element={<Workspace />} />
-                          
-                        <Route
-                            path="/addNewProject"
-                            element={<AddNewProject />}
-                        />
-                              
-                        <Route path="/" element={<Homepage />} />
-                    </Routes>
-                </div>
-            </Router>
-        </>
-    );
+  return (
+    <>
+      <Router>
+        <div className="App">
+          <Header />
+          <Routes>
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/project" element={<Workspace />} />
+            <Route path="/addNewProject" element={<AddNewProject />} />
+            <Route path="/:name" element={<Homepage />} />
+            <Route path="/" element={<Homepage />} />
+          </Routes>
+        </div>
+      </Router>
+    </>
+  );
 }
 
 export default App;

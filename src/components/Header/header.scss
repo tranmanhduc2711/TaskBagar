@@ -37,6 +37,12 @@
     }
     .header-icon{
         align-items: center;
+        .add-pro-btn{
+            padding: 0;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+        }
         .header-account{
             display: inline-block;
             background: $grey;

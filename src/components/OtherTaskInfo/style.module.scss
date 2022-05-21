@@ -17,10 +17,10 @@
 
     .info{
         position: relative;
-        width: 600px;
-        max-height: 550px;
+        width: 800px;
         padding: 20px;
-
+        display: flex;
+        flex-direction: row;
         background-color: #fff;
         z-index: 3;
 
@@ -95,7 +95,7 @@
 
         .comments{
             margin-bottom: 20px;
-            
+
             .commentList{
                 max-height: 140px;
                 overflow-y: scroll;
@@ -103,6 +103,45 @@
                     display: flex;
                     margin-bottom: 10px;
                 }
+            }
+            .sendComment{
+                display: flex;
+                flex-direction:  column;
+                justify-content: flex-end;
+                position: relative;
+                button{
+                    width: 15%;
+                    position: absolute;
+                    right: 0;
+                    top:100%;
+                }
+            }
+        }
+        .taskInfoSidebar{
+            padding: 80px 10px 10px 10px;
+            width:25%;
+            p{
+                font-weight: 700;
+                color: black;
+            }
+            div{
+                position:relative;
+                margin-top: 20px;
+            }
+            button{
+                width: 100%;
+            }
+            .labelIcon{
+                position: absolute;
+                left:5%;
+                color: white;
+                font-size:25px;
+            }
+            .attachmentIcon{
+                position: absolute;
+                left:5%;
+                color: white;
+                font-size:25px;
             }
         }
     }
