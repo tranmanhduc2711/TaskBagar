@@ -1,17 +1,18 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,createContext,useEffect} from 'react';
+import axios from "axios";
 import { useNavigate} from "react-router-dom";
 import { IoCloseCircle } from "react-icons/io5";
 import './addNewProject.scss'
 import ListManager from './ListManager';
 
-//export const managerContext = React.createContext();
+export const managerContext = createContext();
 
 export default function AddProject() {
   //list manager,employee,category
 
   const [listManager,setListManager] = useState([]);
   const [listEmployee, setListEmployee] = useState([]);
-  const [listCategories, setListcategories] = useState([]);
+  const [listCategories, setListCategories] = useState([]);
   const [listParticipants, setListParticipants] = useState([]);
   //project info
   const [projectName,setProjectName] = useState('');
@@ -39,20 +40,47 @@ export default function AddProject() {
   }
 
   const handleSubmitProject = (e) => {
-    console.log({
+
+    let data = {
       project_name: projectName,
       project_description: projectDescription,
       project_cus: projectCus
-    })
+    };
+    axios
+      .post("http://localhost:8000/projects/addNewProject", data)
+      .then((res) => console.log(res.data));
+    navigate("/", { replace: true });
   }
   const handleExitBtn = (e) => {
     navigate("/",{replace: true});
   }
-  const manager = [
-    { name: "John", id: 1, check: false },
-    { name: "Duc", id: 2, check: false },
-    { name: "Nam", id: 3, check: false },
-  ];
+  useEffect(()=>{
+    axios
+      .get(`http://localhost:8000/users/getListManager`)
+      .then((res) => {
+        const managerData = res.data;
+        setListManager([...managerData]);
+      })
+      .catch((error) => console.log(error));
+
+    axios
+      .get(`http://localhost:8000/users/getListEmployee`)
+      .then((res) => {
+        const employeeData = res.data;
+        setListEmployee([...employeeData]);
+      })
+      .catch((error) => console.log(error));  
+      
+      axios
+        .get(`http://localhost:8000/categories`)
+        .then((res) => {
+          const categoriesData = res.data;
+          setListCategories([...categoriesData]);
+        })
+        .catch((error) => console.log(error));
+
+  },[]);
+  
   return (
     <>
       <div className="layer">
@@ -112,24 +140,26 @@ export default function AddProject() {
                   onChange={handleChangeCus}
                 ></input>
               </div>
-              {/* <managerContext.Provider value={[listParticipants, setListParticipants]}> */}
+              <managerContext.Provider
+                value={{ listParticipants, setListParticipants }}
+              >
                 <div>
                   <label>MANAGER</label>
                   <div className="list-manager p-1">
-                    <ListManager listManager={manager}></ListManager>
+                    <ListManager listManager={listManager}></ListManager>
                   </div>
                 </div>
-              {/* </managerContext.Provider> */}
+              </managerContext.Provider>
               <div>
                 <label>EMPLOYEE</label>
                 <div className="list-manager p-1">
-                  <ListManager listManager={manager}></ListManager>
+                  <ListManager listManager={listEmployee}></ListManager>
                 </div>
               </div>
               <div>
                 <label>CATEGORY</label>
                 <div className="list-manager p-1">
-                  <ListManager listManager={manager}></ListManager>
+                  <ListManager listManager={listCategories}></ListManager>
                 </div>
               </div>
             </div>

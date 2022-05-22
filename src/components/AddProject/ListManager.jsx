@@ -6,6 +6,7 @@ export default function ListManager({listManager}) {
   return (
     <>
       <ul>
+        
         {listManager.map((manager) => (
           <Manager key={manager.id} manager={manager}></Manager>
         ))}
