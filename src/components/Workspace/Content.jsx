@@ -102,6 +102,7 @@ const Content = ({ separateTaskList }) => {
             source.index,
             1,
         );
+        
         separateTaskList[Number(destination.droppableId)].list.splice(
             destination.index,
             0,

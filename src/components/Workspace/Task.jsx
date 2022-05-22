@@ -47,7 +47,7 @@ const Task = ({ task,index }) => {
     const handleCloseTaskInfo = () => {
         setOpenTaskInfo(false);
     };
-
+    console.log(task.id);
     return (
         <Draggable key={task.id} draggableId={`${task.id}`} index={index}>
             {(provided) => (

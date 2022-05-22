@@ -14,9 +14,12 @@ const Workspace = () => {
     const navigate = useNavigate();
 
     const context = useContext(Context);
-    const separateTaskList = context.separateTaskList;
+    const tasksContext = context.tasks;
+    const statusList = context.statusList;
+    
     const userContext = context.user;
 
+    const [separateTaskList, setSeparateTaskList] = useState([]);
     const [search, setSearch] = useState("");
     const [openAddNewTask, setOpenAddNewTask] = useState(false);
     const inputRef = useRef();
@@ -42,9 +45,22 @@ const Workspace = () => {
         const user = sessionStorage.user ? JSON.parse(sessionStorage.user) : undefined;
         if(user){
             userContext[1](user);
+            let taskList = statusList.map(item=>({
+                status_id: item.id,
+                status_name: item.name,
+                list: [],
+            }));
+
+            tasksContext[0].forEach(task => {
+                let item = taskList.find(({status_id})=>status_id==task.status_id)
+                item.list.push(task);
+            })
+
+            setSeparateTaskList(taskList);
         }else{
             navigate('/login');
         }
+
     },[])
     
     return (

@@ -1,61 +1,25 @@
-import { useState, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
+import axios from "axios";
 export const Context = createContext();
 
 
 export default function({children}){
+    const [statusList, setStatusList] = useState([]);
+    const [tasks, setTasks] = useState([]);
     //some simple data
-    //userList
-    const userList = [
-        {
-            id: 1,
-            username: 'caohaisil201',
-            password: 'sil201201',
-            fullname: 'Cao Hải Síl',
-            avatar: 'https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=412&q=80'
-        },
-        {
-            id: 2,
-            username: 'abc',
-            password: '123',
-            fullname: 'Someone name',
-            avatar: 'https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=412&q=80'
-        },
-    ]
     //statusList
-    const statusList = [
-        {
-            id: 0,
-            name:"New"
-        },
-        {
-            id: 1,
-            name:"Pending"
-        },
-        {
-            id: 2,
-            name:"Processing"
-        },
-        {
-            id: 3,
-            name:"Ready For QA"
-        },
-        {
-            id: 4,
-            name:"Testing"
-        },
-        {
-            id: 5,
-            name:"Undone"
-        },
-        {
-            id: 6,
-            name:"Pause"
-        },
-        {
-            id: 7,
-            name:"Done"
-        },
-    ];
+    async function fetchStatusList(){
+        await axios.get('http://localhost:8000/status')
+            .then(response => {
+                setStatusList(response.data);
+            })
+            .catch(error => console.log(error));
+    }
+
+    useEffect(()=>{
+        fetchStatusList();
+    },[statusList.length])
+
     //taskList
     const taskList = [
         {
@@ -121,18 +85,18 @@ export default function({children}){
     ]
 
     //separate taskList
-    const separateTaskList = statusList.map(statusItem=>
-        ({
-            status_id: statusItem.id,
-            status_name: statusItem.name,
-            list: [],
-        })
-    )
+    // const separateTaskList = statusList.map(statusItem=>
+    //     ({
+    //         status_id: statusItem.id,
+    //         status_name: statusItem.name,
+    //         list: [],
+    //     })
+    // )
 
-    taskList.forEach(task=>{
-        let item = separateTaskList.find(({status_id})=>status_id===task.status_id);
-        item.list.push(task);
-    })
+    // taskList.forEach(task=>{
+    //     let item = separateTaskList.find(({status_id})=>status_id===task.status_id);
+    //     item.list.push(task);
+    // })
 
 
     const [user,setUser] = useState({
@@ -141,10 +105,10 @@ export default function({children}){
     })
 
     const store = {
-        userList,
         statusList,
-        separateTaskList,
-        user: [user, setUser]
+        // separateTaskList,
+        user: [user, setUser],
+        tasks: [tasks, setTasks],
     }
     
     return <Context.Provider value={store}>{children}</Context.Provider>
