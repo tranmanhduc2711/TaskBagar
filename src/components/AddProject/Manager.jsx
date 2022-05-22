@@ -1,8 +1,8 @@
 import React,{useContext} from 'react'
 import './addNewProject.scss';
-//import { managerContext } from "./AddProject";
+import { managerContext } from "./AddProject";
 export default function Manager({manager}) {
-  //const {listParticipants,setListParticipants} = useContext(managerContext);
+  const [,setListParticipants] = useContext(managerContext);
 
   // const handleChecked = (e)=>{
   //   setListParticipants(manager.id);

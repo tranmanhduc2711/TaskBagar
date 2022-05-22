@@ -1,10 +1,10 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,createContext} from 'react'
 import { useNavigate} from "react-router-dom";
 import { IoCloseCircle } from "react-icons/io5";
 import './addNewProject.scss'
 import ListManager from './ListManager';
 
-//export const managerContext = React.createContext();
+export const managerContext = createContext();
 
 export default function AddProject() {
   //list manager,employee,category
@@ -12,7 +12,7 @@ export default function AddProject() {
   const [listManager,setListManager] = useState([]);
   const [listEmployee, setListEmployee] = useState([]);
   const [listCategories, setListcategories] = useState([]);
-  const [listParticipants, setListParticipants] = useState([]);
+  const [listParticipants, setListParticipants] = useState('');
   //project info
   const [projectName,setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState("");
@@ -112,14 +112,14 @@ export default function AddProject() {
                   onChange={handleChangeCus}
                 ></input>
               </div>
-              {/* <managerContext.Provider value={[listParticipants, setListParticipants]}> */}
+              <managerContext.Provider value={[listParticipants, setListParticipants]}>
                 <div>
                   <label>MANAGER</label>
                   <div className="list-manager p-1">
                     <ListManager listManager={manager}></ListManager>
                   </div>
                 </div>
-              {/* </managerContext.Provider> */}
+              </managerContext.Provider>
               <div>
                 <label>EMPLOYEE</label>
                 <div className="list-manager p-1">
