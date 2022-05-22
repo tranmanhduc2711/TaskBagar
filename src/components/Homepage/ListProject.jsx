@@ -1,6 +1,7 @@
 import React from 'react'
 import Project from './Project'
 export default function ListProject({listProject}) {
+  console.log(listProject);
 
   return (
     <>

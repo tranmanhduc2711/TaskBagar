@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import {Context} from "../../store/context";
 import Input from "../Input";
 import "../../style/login_register.scss";
+import axios from "axios";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -27,18 +28,42 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const user = userList.find(({username,password})=>(
-            usernameInput === username && passwordInput===password
-        ))
-        if(user){
-            console.log('true user');
-            sessionStorage.setItem('user',JSON.stringify(user));
-            userContext[1](user);
-            navigate('/');
-        }else{
-            setErrorMessage('Wrong username or password!');
-            console.log('wrong account');
-        }
+        // const requestOptions = {
+        //     method: "POST",
+        //     headers: {"Content-Type": "application/json"},
+        //     body: JSON.stringify({
+        //         "username": usernameInput,
+        //         "password": passwordInput
+        //     })
+        // }
+
+        axios.post(`http://localhost:8000/auth/login`, ({
+            "username": usernameInput,
+            "password": passwordInput
+        }))
+        .then((res) => {
+            if (res.status === 200 || res.status === 204) {
+                const user = res.data;
+                sessionStorage.setItem('user',JSON.stringify(user));
+                userContext[1](user);
+                navigate('/');
+            } else {
+                setErrorMessage('Wrong username or password!');
+            }
+            return res;
+        })
+        .catch((error) => console.log(error));
+
+        
+
+        // const user = userList.find(({username,password})=>(
+        //     usernameInput === username && passwordInput===password
+        // ))
+        // if(user){
+        //     console.log('true user');
+        // }else{
+        //     console.log('wrong account');
+        // }
         
     };
 
