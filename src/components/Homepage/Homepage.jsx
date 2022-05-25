@@ -16,6 +16,7 @@ export default function Homepage() {
       : undefined;
     if (user) {
       userContext[1](user);
+      sessionStorage.removeItem('projectId');
     } else {
       navigate("/login");
     }

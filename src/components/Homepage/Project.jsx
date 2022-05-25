@@ -9,34 +9,8 @@ export default function Project({ project }) {
   const navigate = useNavigate();
 
   const handleChangeUrl = async () => {
-    await axios.get(`http://localhost:8000/projects/detailProject?id=${project.id}`)
-      .then(response =>response.data)
-      .then(tasks => {
-        return tasks.map(task => {
-            const id = task.id;
-            const name = task.name;
-            const createdBy = task.createdby;
-            const status_id = task.status_id;
-            const startTime = task.starttime;
-            const endTime = task.endtime;
-            const description = task.description;
-            return {
-                id,
-                name,
-                createdBy,
-                status_id,
-                startTime,
-                endTime,
-                description,
-            }
-          })
-        })
-        .then(taskList => tasksContext[1](taskList))
-        .then(()=>{navigate('/project')})
-        .catch(error => console.log(error));
-        
-      // })
-    // navigate(`/project?id=${project.id}`)
+    sessionStorage.setItem('projectId',project.id);
+    navigate('/project');
   };
 
   return (

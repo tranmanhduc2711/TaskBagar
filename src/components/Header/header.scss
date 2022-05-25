@@ -13,6 +13,9 @@
     .content-wrap{
         align-items: center;
         margin: 10px;
+        .header-name{
+            cursor: pointer;
+        }
         .header-search{
             margin-left: 2rem;
             position: relative;

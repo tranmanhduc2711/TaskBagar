@@ -21,37 +21,6 @@ const StatusColumn = ({ statusItem }) => {
                         {statusItem.list.map((task,index) => {
                             return (
                                 <Task key={index} index={index} task={task}/>
-                                // <Draggable
-                                //     key={task.id}
-                                //     draggableId={`${task.id}`}
-                                //     index={task.id}
-                                // >
-                                //     {(provided) => (
-                                //         <>
-                                //             <div
-                                //                 // onClick={handleOpenTaskInfo}
-                                //                 ref={provided.innerRef}
-                                //                 {...provided.draggableProps}
-                                //                 {...provided.dragHandleProps}
-                                //                 className={styles.task}
-                                //             >
-                                //                 {task.name}
-                                //             </div>
-
-                                //             {/* {openTaskInfo && (
-                                //                 <OtherTaskInfo
-                                //                     taskName={task.name}
-                                //                     startDate={task.startDate}
-                                //                     endDate={task.endDate}
-                                //                     description={
-                                //                         task.description
-                                //                     }
-                                //                     close={handleCloseTaskInfo}
-                                //                 />
-                                //             )} */}
-                                //         </>
-                                //     )}
-                                // </Draggable>
                             );
                         })}
                     </div>

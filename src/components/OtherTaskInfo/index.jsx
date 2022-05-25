@@ -1,16 +1,18 @@
 import React,{useState} from 'react'
 import { useNavigate } from "react-router-dom";
+
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
 import LabelIcon from '@mui/icons-material/Label';
 import NotesIcon from '@mui/icons-material/Notes';
 import ChatIcon from '@mui/icons-material/Chat';
 import AttachmentIcon from "@mui/icons-material/Attachment";
-import Input from "../Input/index";
+
 import styles from './style.module.scss';
 
 const OtherTaskInfo = ({
   taskName,
+  employee,
   startDate,
   endDate,
   description,
@@ -35,10 +37,10 @@ const OtherTaskInfo = ({
     console.log(comment);
   };
 
-  const employee = {
-    name: "Eployee name",
-    avatar: "url",
-  };
+  // const employee = {
+  //   name: "Eployee name",
+  //   avatar: "url",
+  // };
   const labels = [
     {
       name: "label1",
@@ -109,7 +111,7 @@ const OtherTaskInfo = ({
                   {employee.name}
                 </div>
                 <div>Start: {startDate}</div>
-                <div>Start: {endDate}</div>
+                <div>End: {endDate}</div>
               </div>
             </div>
             <div className={styles.labels}>
@@ -160,11 +162,11 @@ const OtherTaskInfo = ({
               </div>
               {participated ? (
                 <div className={styles.sendComment}>
-                  <input
+                  <textarea
                     type="text"
                     value={comment}
                     onChange={handleChangeComment}
-                  ></input>
+                  ></textarea>
                   <button onClick={handleSendComment}>SEND</button>
                 </div>
               ) : (

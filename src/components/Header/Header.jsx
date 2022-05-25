@@ -7,6 +7,10 @@ export default function Header() {
   const [searchContext,setSearchContext] = useState('');
   let navigate = useNavigate();
 
+  const handleGetHomepage = () =>{
+    navigate('/');
+  }
+
   const onTextInputChange = (e)=>{
     setSearchContext(e.target.value)
   }
@@ -16,16 +20,17 @@ export default function Header() {
       console.log(searchContext);
       navigate(`${searchContext}` , { replace: true });
     }
-   
+  
   }
   const handleAddProBtn = (e)=>{
     navigate("/addNewProject",{replace: true});
   }
+
   return (
     <>
       <div className="header d-flex-row">
         <div className="d-flex-row content-wrap">
-          <div className="header-name">
+          <div className="header-name" onClick={handleGetHomepage}>
             <h2>TaskBagar</h2>
           </div>
           <div className="header-search">
