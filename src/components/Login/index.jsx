@@ -36,7 +36,7 @@ const Login = () => {
         //         "password": passwordInput
         //     })
         // }
-
+        
         axios.post(`http://localhost:8000/auth/login`, ({
             "username": usernameInput,
             "password": passwordInput
