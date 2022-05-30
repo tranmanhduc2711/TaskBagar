@@ -22,7 +22,6 @@ export default function Homepage() {
   }, []);
 
   const fetchProjectData = () => {
-    console.log(param.name);
     if (!param.name) {
       axios
         .get(`http://localhost:8000/projects`)
