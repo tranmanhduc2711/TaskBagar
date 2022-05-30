@@ -43,6 +43,10 @@ export default function Header() {
     navigate("/addNewProject",{replace: true});
   }
 
+  const handleGetHomepage = () =>{
+    navigate('/');
+  }
+
   return (
     <>
       <div className="header d-flex-row">

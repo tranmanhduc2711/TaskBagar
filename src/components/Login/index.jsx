@@ -10,7 +10,7 @@ const Login = () => {
     const navigate = useNavigate();
     //get data
     const context = useContext(Context);
-    const userList = context.userList;
+    const userList = context.userList;  
     const userContext = context.user;
 
     const [usernameInput, setUsernameInput] = useState("");
@@ -28,7 +28,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-      
+
         axios.post(`http://localhost:8000/auth/login`, ({
             "username": usernameInput,
             "password": passwordInput
@@ -45,6 +45,7 @@ const Login = () => {
             return res;
         })
         .catch((error) => console.log(error));
+        
     };
 
     return (
