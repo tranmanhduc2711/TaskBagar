@@ -15,7 +15,7 @@ export default function Header() {
   useEffect(() => {
     if(userContext[0].username){
       setShowBtns(true);
-      if(userContext[0].role==='admin'){
+      if(userContext[0].role_id===1){
         setShowAdminBtns(true)
       }
     }else{

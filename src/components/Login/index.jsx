@@ -28,15 +28,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // const requestOptions = {
-        //     method: "POST",
-        //     headers: {"Content-Type": "application/json"},
-        //     body: JSON.stringify({
-        //         "username": usernameInput,
-        //         "password": passwordInput
-        //     })
-        // }
-        
+      
         axios.post(`http://localhost:8000/auth/login`, ({
             "username": usernameInput,
             "password": passwordInput
@@ -53,18 +45,6 @@ const Login = () => {
             return res;
         })
         .catch((error) => console.log(error));
-
-        
-
-        // const user = userList.find(({username,password})=>(
-        //     usernameInput === username && passwordInput===password
-        // ))
-        // if(user){
-        //     console.log('true user');
-        // }else{
-        //     console.log('wrong account');
-        // }
-        
     };
 
     return (
