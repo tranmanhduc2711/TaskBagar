@@ -76,7 +76,6 @@
     }
 
     .content{
-        width: 100%;
         flex: 1;
         display: flex;
         gap: 20px;
@@ -88,7 +87,6 @@
 
             background-color: #F3F3F3;
             overflow-y: scroll;
-
             h5{
                 margin-bottom: 10px;
             }
@@ -98,13 +96,15 @@
                 display: flex;
                 flex-direction: column;
                 gap: 5px;
+                overflow-x: hidden;
 
                 .task{
+                    width: 100%;
                     padding: 5px 10px;
                     
                     background-color: #fff;
                     cursor: pointer;
-
+                    text-overflow: clip;
                     &:hover{
                         background-color: $grey;
                     }

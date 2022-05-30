@@ -97,7 +97,7 @@
             margin-bottom: 20px;
 
             .commentList{
-                max-height: 140px;
+                max-height: 100px;
                 overflow-y: scroll;
                 .comment{
                     display: flex;
@@ -105,10 +105,20 @@
                 }
             }
             .sendComment{
+                height: 50px;
+
                 display: flex;
                 flex-direction:  column;
                 justify-content: flex-end;
                 position: relative;
+                textarea{
+                    height: 100%;
+                    margin: 5px 0;
+
+                    resize: none;
+                    outline: none;
+                    border-color: $grey;
+                }
                 button{
                     width: 15%;
                     position: absolute;

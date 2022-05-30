@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useNavigate } from "react-router-dom";
+import {Context} from "../../store/context";
+import axios from "axios";
 import "./Homepage.scss";
+
 export default function Project({ project }) {
+  const tasksContext = useContext(Context).tasks;
   const navigate = useNavigate();
 
-  const handleChangeUrl = () => {
-    navigate(`/project?id=${project.id}`);
+  const handleChangeUrl = async () => {
+    sessionStorage.setItem('projectId',project.id);
+    navigate('/project');
   };
 
   return (
