@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import {Context} from "../../store/context";
 import Input from "../Input";
@@ -9,8 +9,7 @@ import axios from "axios";
 const Login = () => {
     const navigate = useNavigate();
     //get data
-    const context = useContext(Context);
-    const userList = context.userList;  
+    const context = useContext(Context); 
     const userContext = context.user;
 
     const [usernameInput, setUsernameInput] = useState("");
@@ -26,15 +25,15 @@ const Login = () => {
         setPasswordInput(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit =async (e) => {
         e.preventDefault();
-
-        axios.post(`http://localhost:8000/auth/login`, ({
+        
+        await axios.post(`http://localhost:8000/auth/login`, ({
             "username": usernameInput,
             "password": passwordInput
         }))
         .then((res) => {
-            if (res.status === 200 || res.status === 204) {
+            if (res.status >= 200 && res.status < 300) {
                 const user = res.data;
                 sessionStorage.setItem('user',JSON.stringify(user));
                 userContext[1](user);
@@ -44,9 +43,15 @@ const Login = () => {
             }
             return res;
         })
-        .catch((error) => console.log(error));
+        .catch((error) => {
+            setErrorMessage('Wrong username or password!');
+        });
         
     };
+
+    useEffect(() => {
+        sessionStorage.removeItem('user');
+    },[]);
 
     return (
         <div className="login-register">

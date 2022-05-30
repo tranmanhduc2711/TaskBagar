@@ -19,7 +19,7 @@ export default function Header() {
         setShowAdminBtns(true)
       }
     }else{
-
+      setShowBtns(false);
     }
   },[userContext[0].username])
 

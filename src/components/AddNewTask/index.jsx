@@ -18,6 +18,7 @@ const AddNewTask = ({ close }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        //request API call
         console.log({
             taskName,
             desc,
