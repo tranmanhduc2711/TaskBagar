@@ -4,8 +4,9 @@ import { useNavigate} from "react-router-dom";
 import { IoCloseCircle } from "react-icons/io5";
 import './addNewProject.scss'
 import ListManager from './ListManager';
-
+import ListCategory from './ListCategory';
 export const managerContext = createContext();
+export const categoryContext = createContext();
 
 export default function AddProject() {
   //list manager,employee,category
@@ -13,11 +14,12 @@ export default function AddProject() {
   const [listManager,setListManager] = useState([]);
   const [listEmployee, setListEmployee] = useState([]);
   const [listCategories, setListCategories] = useState([]);
-  const [listParticipants, setListParticipants] = useState([]);
   //project info
   const [projectName,setProjectName] = useState('');
   const [projectDescription, setProjectDescription] = useState("");
   const [projectCus, setProjectCus] = useState("");
+  const [listParticipants, setListParticipants] = useState([]);
+  const [projectCategory, setProjectCategory] = useState();
   //add new category
   const [category,setCategory] = useState("");
 
@@ -40,17 +42,19 @@ export default function AddProject() {
   }
 
   const handleSubmitProject = (e) => {
-
-    let data = {
-      project_name: projectName,
-      project_description: projectDescription,
-      project_cus: projectCus
-    };
+    console.log(sessionStorage.getItem("user")[6]);
     axios
-      .post("http://localhost:8000/projects/addNewProject", data)
+      .post("http://localhost:8000/projects/addNewProject", {
+        "project_name": projectName,
+        "project_description": projectDescription,
+        "project_cus": projectCus,
+        "list_employees": listParticipants,
+        "category": projectCategory,
+        "createdBy": parseInt(sessionStorage.getItem('user')[6])
+      })
       .then((res) => console.log(res.data));
     navigate("/", { replace: true });
-  }
+  };
   const handleExitBtn = (e) => {
     navigate("/",{replace: true});
   }
@@ -149,19 +153,24 @@ export default function AddProject() {
                     <ListManager listManager={listManager}></ListManager>
                   </div>
                 </div>
+
+                <div>
+                  <label>EMPLOYEE</label>
+                  <div className="list-manager p-1">
+                    <ListManager listManager={listEmployee}></ListManager>
+                  </div>
+                </div>
               </managerContext.Provider>
-              <div>
-                <label>EMPLOYEE</label>
-                <div className="list-manager p-1">
-                  <ListManager listManager={listEmployee}></ListManager>
+              <categoryContext.Provider
+                value={{ projectCategory, setProjectCategory }}
+              >
+                <div>
+                  <label>CATEGORY</label>
+                  <div className="list-manager p-1">
+                    <ListCategory listCategory={listCategories}></ListCategory>
+                  </div>
                 </div>
-              </div>
-              <div>
-                <label>CATEGORY</label>
-                <div className="list-manager p-1">
-                  <ListManager listManager={listCategories}></ListManager>
-                </div>
-              </div>
+              </categoryContext.Provider>
             </div>
           </div>
 
