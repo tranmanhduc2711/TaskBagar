@@ -8,6 +8,7 @@ const AddNewTask = ({ close }) => {
     const [taskName, setTaskName] = useState("");
     const [desc, setDesc] = useState("");
     const [employee, setEmployee] = useState("");
+    const [errorMessage, setErrorMessage] = useState('');
 
     const startRef = useRef();
     const endRef = useRef();
@@ -19,13 +20,25 @@ const AddNewTask = ({ close }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         //request API call
-        console.log({
-            taskName,
-            desc,
-            employee,
-            start: startRef.current.value,
-            end: endRef.current.value,
-        });
+        const name = taskName;
+        const project_id = JSON.parse(sessionStorage.projectId);
+        const createdby = JSON.parse(sessionStorage.user).id;
+        const status_id = 0;
+        const starttime = startRef.current.value;
+        const endtime = endRef.current.value;
+        const description = desc;
+
+        if(!name) {
+            setErrorMessage('Please enter task name');
+        }else if(!endtime){
+            setErrorMessage('Please select end time');
+        }else if(starttime > endtime){
+            setErrorMessage('Wrong start end time');;
+        }else{
+            setErrorMessage('');
+        }
+
+        //call API
     };
 
     return (
@@ -33,8 +46,9 @@ const AddNewTask = ({ close }) => {
             <form className={styles.AddNewTask}>
                 <h3>Add new task</h3>
                 <input
-                    placeholder="Task name"
+                    placeholder="Task name (required)"
                     value={taskName}
+                    required
                     onChange={(e) => setTaskName(e.target.value)}
                 />
                 <textarea
@@ -49,6 +63,7 @@ const AddNewTask = ({ close }) => {
                 />
                 <input ref={startRef} type="date" placeholder="Start" />
                 <input ref={endRef} type="date" placeholder="Deadline" />
+                <span style={{marginBottom: '10px', color: '#ff0000'}}>{errorMessage}</span>
                 <div className={styles.group}>
                     {/*temporary onCLick */}
                     <button
