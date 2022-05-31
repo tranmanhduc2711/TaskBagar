@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useState, useRef } from "react";
 
 import LabelIcon from "@mui/icons-material/Label";
@@ -39,6 +40,18 @@ const AddNewTask = ({ close }) => {
         }
 
         //call API
+        axios
+          .post("http://localhost:8000/tasks/addNewTask", {
+            name: name,
+            project_id: project_id,
+            status_id: status_id,
+            createdby: createdby,
+            starttime: starttime,
+            endtime: endtime,
+            description: description,
+          })
+          .then((res) => console.log(res.data));
+       
     };
 
     return (
