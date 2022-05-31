@@ -7,6 +7,7 @@ import Homepage from "./components/Homepage/Homepage";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Workspace from "./components/Workspace";
+import Info from "./components/Info";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/project" element={<Workspace />} />
             <Route path="/addNewProject" element={<AddNewProject />} />
+            <Route path="/info" element={<Info/>} />
             <Route path="/:name" element={<Homepage />} />
             <Route path="/" element={<Homepage />} />
           </Routes>

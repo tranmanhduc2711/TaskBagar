@@ -1,0 +1,63 @@
+@import '../../style/variable';
+
+.component{
+    width: 1000px;
+    height: 440px;
+    margin: 50px auto;
+
+    padding: 20px;
+    background-color: #fff;
+
+    display: flex;
+    gap: 20px;
+
+    .avatar{
+        width: 400px;
+        height: 400px;
+        background-color: #ccc;
+        position: relative;
+        overflow: hidden;
+
+        .changeAvatarBtn{
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            z-index: 999;
+            cursor: pointer;
+        }
+    }
+
+    .info{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        input{
+            // height: 30px;
+            font-size: 1.1rem;
+            padding: 5px 10px;
+        }
+
+        .buttons{
+            width: 100%;
+            display: flex;
+            gap: 15px;
+
+            button{
+                width: 50%;
+                height: 35px;
+                
+                font-size: 1.1rem;
+                border-radius: 5px;
+
+                &:first-child{
+                    background-color: $primary;
+                }
+
+                &:last-child{
+                    background-color: $secondary;
+                }
+            }
+        }
+    }
+}
