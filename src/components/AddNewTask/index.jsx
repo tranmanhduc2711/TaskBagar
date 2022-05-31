@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useState, useRef } from "react";
 
 import LabelIcon from "@mui/icons-material/Label";
@@ -8,6 +9,7 @@ const AddNewTask = ({ close }) => {
     const [taskName, setTaskName] = useState("");
     const [desc, setDesc] = useState("");
     const [employee, setEmployee] = useState("");
+    const [errorMessage, setErrorMessage] = useState('');
 
     const startRef = useRef();
     const endRef = useRef();
@@ -18,13 +20,38 @@ const AddNewTask = ({ close }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log({
-            taskName,
-            desc,
-            employee,
-            start: startRef.current.value,
-            end: endRef.current.value,
-        });
+        //request API call
+        const name = taskName;
+        const project_id = JSON.parse(sessionStorage.projectId);
+        const createdby = JSON.parse(sessionStorage.user).id;
+        const status_id = 0;
+        const starttime = startRef.current.value;
+        const endtime = endRef.current.value;
+        const description = desc;
+
+        if(!name) {
+            setErrorMessage('Please enter task name');
+        }else if(!endtime){
+            setErrorMessage('Please select end time');
+        }else if(starttime > endtime){
+            setErrorMessage('Wrong start end time');;
+        }else{
+            setErrorMessage('');
+        }
+
+        //call API
+        axios
+          .post("http://localhost:8000/tasks/addNewTask", {
+            name: name,
+            project_id: project_id,
+            status_id: status_id,
+            createdby: createdby,
+            starttime: starttime,
+            endtime: endtime,
+            description: description,
+          })
+          .then((res) => console.log(res.data));
+       
     };
 
     return (
@@ -32,8 +59,9 @@ const AddNewTask = ({ close }) => {
             <form className={styles.AddNewTask}>
                 <h3>Add new task</h3>
                 <input
-                    placeholder="Task name"
+                    placeholder="Task name (required)"
                     value={taskName}
+                    required
                     onChange={(e) => setTaskName(e.target.value)}
                 />
                 <textarea
@@ -48,6 +76,7 @@ const AddNewTask = ({ close }) => {
                 />
                 <input ref={startRef} type="date" placeholder="Start" />
                 <input ref={endRef} type="date" placeholder="Deadline" />
+                <span style={{marginBottom: '10px', color: '#ff0000'}}>{errorMessage}</span>
                 <div className={styles.group}>
                     {/*temporary onCLick */}
                     <button

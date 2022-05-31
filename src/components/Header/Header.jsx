@@ -5,21 +5,23 @@ import {Context} from "../../store/context";
 import { BsPlusLg, BsFillBellFill,BsSearch,BsFillPersonPlusFill } from "react-icons/bs";
 import './header.scss';
 export default function Header() {
+  let navigate = useNavigate();
   const context = useContext(Context);
   const userContext = context.user;
   const [searchContext,setSearchContext] = useState('');
   const [showBtns, setShowBtns] = useState(false);
   const [showAdminBtns, setShowAdminBtns] = useState(false);
-  let navigate = useNavigate();
+  const [showIconDropDown, setShowIconDropDown] = useState(false);
 
   useEffect(() => {
     if(userContext[0].username){
       setShowBtns(true);
+      setShowIconDropDown(false);
       if(userContext[0].role_id===1){
         setShowAdminBtns(true)
       }
     }else{
-
+      setShowBtns(false);
     }
   },[userContext[0].username])
 
@@ -45,6 +47,15 @@ export default function Header() {
 
   const handleGetHomepage = () =>{
     navigate('/');
+  }
+
+  const handleShowIconDropDown = () =>{
+    setShowIconDropDown(!showIconDropDown);
+  }
+
+  const handleLogout = () => {
+    userContext[1]({});
+    navigate('/login');
   }
 
   return (
@@ -79,9 +90,13 @@ export default function Header() {
           <div className="dropdown m-1">
             <BsFillBellFill />
           </div>
-          <div className="header-account m-1">
+          <div className="header-account m-1" onClick={handleShowIconDropDown}>
             <p>TM</p>
           </div>
+          {showIconDropDown && <div className="icon-dropdown">
+            <div onClick={()=>{navigate('/info')}}>Information</div>
+            <div onClick={handleLogout}>Log out</div>
+          </div>}
         </div>}
       </div>
     </>

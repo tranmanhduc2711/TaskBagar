@@ -1,20 +1,21 @@
 import React from "react";
-import { useState, useRef } from "react";
-
-import Input from "../Input";
-import "../../style/login_register.scss";
-import { resetServerContext } from "react-beautiful-dnd";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import {Context} from "../../store/context";
+import Input from "../Input";
+import "../../style/login_register.scss";
+
 const Register = () => {
   const navigate = useNavigate();
-  const roles = ['admin','manager','employee'];
-  const roleRef = useRef();
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const [fullname, setFullname] = useState('')
+  const userContext = useContext(Context).user;
 
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [fullname, setFullname] = useState('');
+  const [roles,setRoles] = useState([]);
+  const [role, setRole] = useState(1);
   const handleChangeUsername = e =>{
     setUsername(e.target.value);
   }
@@ -27,14 +28,18 @@ const Register = () => {
     setFullname(e.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleChangeRole = e =>{
+    setRole(e.target.value);
+  }
+
+  const handleSubmit = e => {
     e.preventDefault();
 
     const temp = {
-      username: username,
-      password: password,
-      fullname: fullname,
-      role: roleRef.current.value,
+      username,
+      password,
+      fullname,
+      role: Number(role),
     };
 
     axios.post(`http://localhost:8000/users/create`, ({
@@ -49,6 +54,24 @@ const Register = () => {
     })
     .catch((error) => console.log(error));
   }
+
+  useEffect(() => {
+    const fetchRoles = async () =>{
+      await axios.get('http://localhost:8000/roles')
+        .then(res=>setRoles(res.data))
+        .catch(error=>console.log(error));
+    }
+
+    if(userContext[0].username){
+      if(userContext[0].role_id!==1){
+        navigate('/');
+      }else{
+        fetchRoles();
+      }
+    }else{
+      navigate('/');
+    }
+  },[userContext[0].username,roles.length]);
   
   return <div>
     <div className="login-register" onSubmit={handleSubmit}>
@@ -75,9 +98,9 @@ const Register = () => {
         <div className="group register">
           <label className="role form-label">
             Role:
-            <select ref={roleRef} name="role" id="role">
+            <select onChange={handleChangeRole} name="role" id="role">
               {roles.map((role,index)=>
-                <option key={index} value={role}>{role}</option>
+                <option key={index} value={role.id}>{role.role_name}</option>
               )}
             </select>
           </label>

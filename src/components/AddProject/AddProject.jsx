@@ -58,6 +58,7 @@ export default function AddProject() {
   const handleExitBtn = (e) => {
     navigate("/",{replace: true});
   }
+  
   useEffect(()=>{
     axios
       .get(`http://localhost:8000/users/getListManager`)

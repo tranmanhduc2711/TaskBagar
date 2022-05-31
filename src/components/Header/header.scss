@@ -47,17 +47,36 @@
             width: 30px;
         }
         .header-account{
-            display: inline-block;
-            background: $grey;
-            border-radius: 50%;
             width: 30px;
             height: 30px;
+            display: inline-block;
+
+            background: $grey;
+            border-radius: 50%;
+
             text-align: center;
             
+            cursor: pointer;
             p{
                 margin-top: 5px;    
             }
         }
+
+        .icon-dropdown{
+            position: absolute;
+            top: 3rem;
+            right: 10px;
+            background-color: #fff;
+            div{
+                padding: 5px 10px;
+                cursor: pointer;
+
+                &:hover{
+                    background: #eee;
+                }
+            }
+        }
+
         .btn{
             &:hover{
                 cursor: pointer;

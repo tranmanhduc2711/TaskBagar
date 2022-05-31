@@ -15,11 +15,13 @@ const AddNewLabel = ({close}) => {
 
     const handleSubmit = () => {
         if(!labelName === ''){
+            //request API call
             console.log(labelName,color);
         }else{
             console.log('fail to create new label');
         }
     }
+
     return (
         <div className={styles.layer}>
             <div className={styles.form}>
