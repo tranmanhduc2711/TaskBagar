@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 
 import { SketchPicker } from "react-color";
-import styles from "./styles.module.scss";
+import styles from "./style.module.scss";
 
 const AddNewLabel = ({close}) => {
     const [labelName, setLabelName] = useState('');
