@@ -97,6 +97,7 @@ const AddNewTask = ({ close }) => {
                 starttime: starttime,
                 endtime: endtime,
                 description: description,
+                label: labelsTask
             })
             .then((res) => console.log(res.data));
     };
