@@ -1,0 +1,64 @@
+@import '../../style/variable';
+
+.layer{
+    height: 100vh;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0,0,0,0.6);
+
+    button{
+        text-transform: uppercase;
+        border-radius: 3px;
+    }
+
+    .box{
+        height: 400px;
+        width: 500px;
+        padding: 10px;
+
+        display: flex;
+        flex-direction: column;
+        background-color: #fff;
+
+        .header{
+            height: 25px;
+            display: flex;
+            justify-content: space-between;
+
+            svg{
+                cursor: pointer;
+            }
+        }
+
+        .labelList{
+            margin-top: 20px;
+
+            display: flex;
+            flex: 1;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            overflow-y: scroll;
+
+            .label{
+                padding: 5px 10px;
+                height: 30px;
+                color: #fff;
+                cursor: pointer;
+            }
+        }
+
+        .button{
+            align-self: flex-end;
+            height: 25px;
+        }
+    }
+}

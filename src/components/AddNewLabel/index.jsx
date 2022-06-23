@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 
+import { Navigate, useNavigate } from "react-router-dom";
 import { SketchPicker } from "react-color";
-import styles from "./styles.module.scss";
+import styles from "./style.module.scss";
+import axios from "axios";
 
 const AddNewLabel = ({close}) => {
+    const navigate = useNavigate();
     const [labelName, setLabelName] = useState('');
     const [color, setColor] = useState('fff');
     const handleChangeLabelName = e => {
@@ -13,10 +16,20 @@ const AddNewLabel = ({close}) => {
         setColor(color.hex);
     }
 
-    const handleSubmit = () => {
-        if(!labelName === ''){
-            //request API call
-            console.log(labelName,color);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if(labelName !== ''){
+            await axios.post(`http://localhost:8000/labels`, ({
+                "name": labelName,
+                "color": color
+            }))
+            .then((res) => {
+                navigate('/');
+            })
+            .catch((error) => {
+                console.log(error);
+            })
         }else{
             console.log('fail to create new label');
         }

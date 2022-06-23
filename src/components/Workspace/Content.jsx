@@ -7,7 +7,6 @@ import styles from "./style.module.scss";
 const Content = ({ separateTaskList }) => {
     const onDragEnd = (result) => {
         //TODO: reorder columns
-        console.log(result);
         const { source, destination, draggableId } = result;
         if (!destination) {
             return;
@@ -29,6 +28,8 @@ const Content = ({ separateTaskList }) => {
             ...task,
         );
         //change database after this
+        //taskID: draggableId, status_update: destination.droppableId
+
     };
 
     return (
