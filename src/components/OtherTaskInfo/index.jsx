@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import { useNavigate } from "react-router-dom";
-
+import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
 import LabelIcon from '@mui/icons-material/Label';
@@ -11,6 +11,7 @@ import AttachmentIcon from "@mui/icons-material/Attachment";
 import styles from './style.module.scss';
 
 const OtherTaskInfo = ({
+  taskId,
   taskName,
   employee,
   startDate,
@@ -18,10 +19,6 @@ const OtherTaskInfo = ({
   description,
   close,
 }) => {
-  /**
-   * Data will get from API
-   * All value above is temporary
-   */
 
   const [comment, setComment] = useState("");
   //check if employee participates task
@@ -37,10 +34,6 @@ const OtherTaskInfo = ({
     console.log(comment);
   };
 
-  // const employee = {
-  //   name: "Eployee name",
-  //   avatar: "url",
-  // };
   const labels = [
     {
       name: "label1",
@@ -82,9 +75,7 @@ const OtherTaskInfo = ({
   const handleClose = (e) => {
     if (e.target.classList[0] !== undefined) {
       if (e.target.classList[0].includes("layer")) {
-        {
-          close();
-        }
+        close();
       }
     }
   };
@@ -186,7 +177,14 @@ const OtherTaskInfo = ({
                 <button>ATTACHMENT</button>
               </div>
               <div>
-                <button className="danger">DELETE</button>
+                <button className="danger" onClick={async () => {
+                  await axios.delete('http://localhost:8000/tasks/deleteTask',{
+                    data: {
+                      task_id: taskId,
+                    }
+                  }).then(response => response.data)
+                  .catch(error=>console.log(error));
+                }}>DELETE</button>
               </div>
             </div>
           ) : (
