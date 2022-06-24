@@ -25,7 +25,7 @@ const Login = () => {
         setPasswordInput(e.target.value);
     };
 
-    const handleSubmit =async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         await axios.post(`http://localhost:8000/auth/login`, ({
@@ -46,7 +46,6 @@ const Login = () => {
         .catch((error) => {
             setErrorMessage('Wrong username or password!');
         });
-        
     };
 
     useEffect(() => {
