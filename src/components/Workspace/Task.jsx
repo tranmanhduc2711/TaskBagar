@@ -44,6 +44,7 @@ const Task = ({ task,index }) => {
 
                     {openTaskInfo && (
                         <OtherTaskInfo
+                            taskId={task.id}
                             taskName={task.name}
                             employee={{name:task.createdBy}}
                             startDate={startTime}
