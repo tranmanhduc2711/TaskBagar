@@ -1,16 +1,12 @@
 @import './_variable.scss';
 
 body{
-    background-color: $grey;
+    font-family: 'Raleway', sans-serif;
 }
 
 *, ::after, ::before {
     margin: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-family: 'Raleway', sans-serif;
 }
 
 ul {

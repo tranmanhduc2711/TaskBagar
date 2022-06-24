@@ -25,7 +25,7 @@ const Login = () => {
         setPasswordInput(e.target.value);
     };
 
-    const handleSubmit =async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         await axios.post(`http://localhost:8000/auth/login`, ({
@@ -46,7 +46,6 @@ const Login = () => {
         .catch((error) => {
             setErrorMessage('Wrong username or password!');
         });
-        
     };
 
     useEffect(() => {
@@ -71,15 +70,15 @@ const Login = () => {
                 />
                 <span style={{color: '#ff0000'}}>{errorMessage}</span>
                 <div className="group">
-                    <label>
+                    {/* <label>
                         <input
                             type="checkbox"
                             onChange={() => setRemember(!remember)}
                             checked={remember}
                         />
                         Remeber me
-                    </label>
-                    <input type="submit" value="Login" />
+                    </label> */}
+                    <input className="login-btn" type="submit" value="Login" />
                 </div>
             </form>
         </div>
