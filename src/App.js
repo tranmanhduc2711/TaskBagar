@@ -10,7 +10,7 @@ import Homepage from "./components/Homepage/Homepage";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Workspace from "./components/Workspace";
-import Info from "./components/Info";
+import Userinfo from "./components/Userinfo";
 
 function App() {
   const isDark = useContext(Context).isDark[0];
@@ -24,7 +24,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/project" element={<Workspace />} />
             <Route path="/addNewProject" element={<AddNewProject />} />
-            <Route path="/info" element={<Info/>} />
+            <Route path="/info" element={<Userinfo/>} />
             <Route path="/:name" element={<Homepage />} />
             <Route path="/" element={<Homepage />} />
           </Routes>
