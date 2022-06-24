@@ -1,6 +1,9 @@
 import "./style/_reset.scss";
 import "./style/_global.scss";
+import { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Context } from "./store/context";
+
 import Header from "./components/Header/Header";
 import AddNewProject from "./components/AddProject/AddProject";
 import Homepage from "./components/Homepage/Homepage";
@@ -10,10 +13,11 @@ import Workspace from "./components/Workspace";
 import Info from "./components/Info";
 
 function App() {
+  const isDark = useContext(Context).isDark[0];
   return (
     <>
       <Router>
-        <div className="App">
+        <div className={isDark ? `App Dark` : `App`}>
           <Header />
           <Routes>
             <Route path="/register" element={<Register />} />

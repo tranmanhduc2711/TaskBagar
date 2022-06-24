@@ -49,6 +49,19 @@
     background-color: #555;
 }
 
+.App{
+    height: 100vh;
+    background-color: $grey;
+}
+
+.App.Dark{
+    background-color: $dark-theme;
+    
+    h1,h2,h3,h4{
+        color: #fff;
+    }
+}
+
 form{
     width: 100%;
     padding: 40px;

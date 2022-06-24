@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { SketchPicker } from "react-color";
 import styles from "./style.module.scss";
 import axios from "axios";

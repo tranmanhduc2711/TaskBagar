@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import {Context} from "../../store/context";
 import { BsPlusLg, BsFillBellFill,BsSearch,BsFillPersonPlusFill } from "react-icons/bs";
 import './header.scss';
+
 export default function Header() {
   let navigate = useNavigate();
   const context = useContext(Context);
   const userContext = context.user;
+  const isDarkContext = context.isDark;
   const [searchContext,setSearchContext] = useState('');
   const [showBtns, setShowBtns] = useState(false);
   const [showAdminBtns, setShowAdminBtns] = useState(false);
@@ -57,6 +59,7 @@ export default function Header() {
     userContext[1]({});
     navigate('/login');
   }
+  
 
   return (
     <>
@@ -74,6 +77,15 @@ export default function Header() {
             onKeyDown={handleSearch}
             ></input>
           </div>
+          <label className="switch">
+            <input 
+              type="checkbox" 
+              value={isDarkContext[0]} 
+              onChange={()=>isDarkContext[1](!isDarkContext[0])}
+            />
+            <span className="slider round"></span>
+          </label>
+
         </div>
 
         {showBtns && <div className="header-icon d-flex-row">

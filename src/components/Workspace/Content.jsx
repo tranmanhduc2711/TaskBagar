@@ -1,11 +1,11 @@
 import React from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-
+import axios from "axios";
 import StatusColumn from "./StatusColumn";
 import styles from "./style.module.scss";
 
 const Content = ({ separateTaskList }) => {
-    const onDragEnd = (result) => {
+    const onDragEnd =  (result) => {
         //TODO: reorder columns
         const { source, destination, draggableId } = result;
         if (!destination) {
@@ -29,7 +29,10 @@ const Content = ({ separateTaskList }) => {
         );
         //change database after this
         //taskID: draggableId, status_update: destination.droppableId
-
+         axios.post(`http://localhost:8000/tasks/updateTask`, ({
+            "task_id": draggableId,
+            "status_id": destination.droppableId
+        }));
     };
 
     return (

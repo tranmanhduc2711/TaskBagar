@@ -16,6 +16,8 @@ const Workspace = () => {
     const context = useContext(Context);
     const userContext = context.user;
     const statusList = context.statusList;
+    const projectName = sessionStorage.projectName;
+    console.log();
 
     const [tasks, setTasks] = useState([]);
     const [separateTaskList, setSeparateTaskList] = useState([]);
@@ -105,7 +107,7 @@ const Workspace = () => {
         <>
             <div className={`${styles.workspace} d-flex-col`}>
                 <div className={styles.header}>
-                    <h2>Project name</h2>
+                    <h2>{projectName}</h2>
                     <div className={styles.groupBtn}>
                         <div className={styles.search}>
                             <input

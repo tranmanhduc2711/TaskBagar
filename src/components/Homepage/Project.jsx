@@ -10,6 +10,7 @@ export default function Project({ project }) {
 
   const handleChangeUrl = async () => {
     sessionStorage.setItem('projectId',project.id);
+    sessionStorage.setItem('projectName',project.name);
     navigate('/project');
   };
 
