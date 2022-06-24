@@ -7,6 +7,7 @@ import SearchIcon from "@mui/icons-material/Search";
 
 import AddNewTask from "../AddNewTask";
 import Content from "./Content";
+import ProjectInfo from '../ProjectInfo';
 
 import styles from "./style.module.scss";
 
@@ -23,6 +24,7 @@ const Workspace = () => {
     const [separateTaskList, setSeparateTaskList] = useState([]);
     const [search, setSearch] = useState("");
     const [openAddNewTask, setOpenAddNewTask] = useState(false);
+    const [openProjectInfo, setOpenProjectInfo] = useState(false);
     const inputRef = useRef();
 
     const handleChangeSearch = (e) => {
@@ -37,9 +39,18 @@ const Workspace = () => {
         setOpenAddNewTask(true);
     };
 
+    const handleOpenProjectInfo = () => {
+        setOpenProjectInfo(true)
+    }
+
     const handleCloseAddNewTask = (e) => {
         e.preventDefault();
         setOpenAddNewTask(false);
+    };
+
+    const handleCloseProjectInfo = (e) => {
+        e.preventDefault();
+        setOpenProjectInfo(false);
     };
 
     const fecthTaskList = async (projectId) => {
@@ -134,6 +145,7 @@ const Workspace = () => {
                         <button
                             className={styles.btn}
                             style={{ backgroundColor: "#8146FF" }}
+                            onClick={handleOpenProjectInfo}
                         >
                             info
                         </button>
@@ -145,6 +157,7 @@ const Workspace = () => {
                 </div>
                 <Content separateTaskList={separateTaskList} />
             </div>
+            {openProjectInfo && <ProjectInfo close={handleCloseProjectInfo} />}
             {openAddNewTask && <AddNewTask close={handleCloseAddNewTask} />}
         </>
     );
