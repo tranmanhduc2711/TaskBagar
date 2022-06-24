@@ -11,12 +11,11 @@ import ChatIcon from '@mui/icons-material/Chat';
 import AttachmentIcon from "@mui/icons-material/Attachment";
 
 import styles from "./style.module.scss";
-import axios from "axios";
 
 const OtherTaskInfo = ({
   taskId,
   taskName,
-  employee,
+  employeeId,
   startDate,
   endDate,
   description,
@@ -24,6 +23,7 @@ const OtherTaskInfo = ({
 }) => {
 
   const [comment, setComment] = useState("");
+  const [employee, setEmployee] = useState("");
   const [labels, setLabels] = useState([]);
   //check if employee participates task
   const participated = 1;
@@ -39,8 +39,19 @@ const OtherTaskInfo = ({
   };
 
   useEffect(() => {
+    const fetchUserInTask = async () => {
+      await axios.get(`http://localhost:8000/users/userByTask`, {
+        params: {"id": employeeId.name}
+      })
+      .then(res => {
+        let userData = res.data.name;
+        console.log(userData);
+        setEmployee(userData);
+      })
+      .catch((error) => console.log(error));
+    };
+
     const fetchLabelsInTask = async () => {
-      console.log(taskId);
       await axios
         .get(`http://localhost:8000/labelsInTask`, {
           params: {"task_id": taskId}
@@ -56,7 +67,10 @@ const OtherTaskInfo = ({
         })
         .catch((error) => console.log(error));
     };
-    fetchLabelsInTask()
+
+    fetchUserInTask();
+    fetchLabelsInTask();
+
   }, [labels.length]);
 
   const comments = [
@@ -109,7 +123,7 @@ const OtherTaskInfo = ({
                       alt=""
                     />
                   </div>
-                  {employee.name}
+                  {employee}
                 </div>
                 <div>Start: {startDate}</div>
                 <div>End: {endDate}</div>

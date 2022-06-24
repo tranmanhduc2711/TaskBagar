@@ -46,7 +46,7 @@ const Task = ({ task,index }) => {
                         <OtherTaskInfo
                             taskId={task.id}
                             taskName={task.name}
-                            employee={{name:task.createdBy}}
+                            employeeId={{name:task.createdBy}}
                             startDate={startTime}
                             endDate={endTime}
                             description={task.description}
