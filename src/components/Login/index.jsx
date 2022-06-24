@@ -70,15 +70,15 @@ const Login = () => {
                 />
                 <span style={{color: '#ff0000'}}>{errorMessage}</span>
                 <div className="group">
-                    <label>
+                    {/* <label>
                         <input
                             type="checkbox"
                             onChange={() => setRemember(!remember)}
                             checked={remember}
                         />
                         Remeber me
-                    </label>
-                    <input type="submit" value="Login" />
+                    </label> */}
+                    <input className="login-btn" type="submit" value="Login" />
                 </div>
             </form>
         </div>
