@@ -1,14 +1,17 @@
-import React,{useState} from 'react'
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
 import InfoIcon from '@mui/icons-material/Info';
 import LabelIcon from '@mui/icons-material/Label';
 import NotesIcon from '@mui/icons-material/Notes';
 import ChatIcon from '@mui/icons-material/Chat';
+
 import AttachmentIcon from "@mui/icons-material/Attachment";
 
-import styles from './style.module.scss';
+import styles from "./style.module.scss";
+import axios from "axios";
 
 const OtherTaskInfo = ({
   taskId,
@@ -21,6 +24,7 @@ const OtherTaskInfo = ({
 }) => {
 
   const [comment, setComment] = useState("");
+  const [labels, setLabels] = useState([]);
   //check if employee participates task
   const participated = 1;
   //navigate url
@@ -34,21 +38,27 @@ const OtherTaskInfo = ({
     console.log(comment);
   };
 
-  const labels = [
-    {
-      name: "label1",
-      color: "red",
-    },
-    {
-      name: "label2",
-      color: "green",
-    },
-    {
-      name: "label3",
-      color: "blue",
-    },
-  ];
-  
+  useEffect(() => {
+    const fetchLabelsInTask = async () => {
+      console.log(taskId);
+      await axios
+        .get(`http://localhost:8000/labelsInTask`, {
+          params: {"task_id": taskId}
+        })
+        .then((res) => {
+          let labels = res.data.map((item) => {
+            return {
+              name: item.label.name,
+              color: item.label.color,
+            };
+          });
+          setLabels(labels);
+        })
+        .catch((error) => console.log(error));
+    };
+    fetchLabelsInTask()
+  }, [labels.length]);
+
   const comments = [
     {
       avatar: "url",
